@@ -8,7 +8,7 @@ export default function Home({ csrfToken }) {
 	const dummyCall = (withHeader = true) => {
 		axios({
 			method: 'post',
-			url: 'http://localhost:3000/api/hello',
+			url: '/api/hello',
 			params: {},
 		  })
 		  .then((res) => alert(`Joss! ${res.data.message}`))
