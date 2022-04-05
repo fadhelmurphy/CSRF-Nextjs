@@ -6,11 +6,14 @@ import axios from 'axios'
 
 export default function Home({ csrfToken }) {
 	const dummyCall = (withHeader = true) => {
-		axios
-			.post('http://localhost:3000/api/hello', {}, { headers: !withHeader ? undefined : { 'CSRF-Token': csrfToken } })
-			.then((res) => alert(`Hi ${res.data.name}`))
-			.catch(() => alert('Not protected'))
-	}
+		axios({
+			method: 'post',
+			url: 'http://localhost:3000/api/hello',
+			params: {},
+		  })
+		  .then((res) => alert(`Joss! ${res.data.message}`))
+		  .catch(() => alert('Not protected'))
+  }
 
 	return (
 		<div className={styles.container}>
@@ -25,17 +28,17 @@ export default function Home({ csrfToken }) {
 			<button onClick={dummyCall} type="button">
 				Dummy Call With CSRF Header
 			</button>
-			<button onClick={() => dummyCall(false)} type="button">
+			{/* <button onClick={() => dummyCall(false)} type="button">
 				Dummy Call Without CSRF Header
-			</button>
+			</button> */}
 		</div>
 	)
 }
 
-export async function getServerSideProps(context) {
-	const { req, res } = context
-	await csrf(req, res)
-	return {
-		props: { csrfToken: req.csrfToken() },
-	}
-}
+// export async function getServerSideProps(context) {
+// 	const { req, res } = context
+// 	await csrf(req, res)
+// 	return {
+// 		props: { csrfToken: req.csrfToken() },
+// 	}
+// }
