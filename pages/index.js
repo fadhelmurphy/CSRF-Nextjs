@@ -11,7 +11,7 @@ export default function Home({ciphertext}) {
 		if(!withHeader){
 			Cookies.set("auth-token","SALAH-TOKEN")
 		}else{
-			Cookies.set("auth-token",ciphertext, {secure:true,sameSite:'Strict'})
+			Cookies.set("auth-token",ciphertext)
 		}
 		axios({
 			method: 'post',
