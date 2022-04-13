@@ -2,14 +2,17 @@ import Head from 'next/head'
 import Image from 'next/image'
 import styles from '../styles/Home.module.css'
 import axios from 'axios'
+import Cookies from 'js-cookie'
 
 // var CryptoJS = require("crypto-js");
 
-export default function Home({ csrfToken }) {
+export default function Home({ciphertext}) {
 	const dummyCall = (withHeader = true) => {
-		// if(!withHeader){
-		// 	document.cookie = "auth-token=Chuck"
-		// }
+		if(!withHeader){
+			Cookies.set("auth-token","SALAH-TOKEN")
+		}else{
+			Cookies.set("auth-token",ciphertext, {secure:true,sameSite:'Strict'})
+		}
 		axios({
 			method: 'post',
 			url: '/api/hello',
@@ -32,9 +35,9 @@ export default function Home({ csrfToken }) {
 			<button onClick={dummyCall} type="button">
 				Dummy Call With CSRF Header
 			</button>
-			{/* <button onClick={() => dummyCall(false)} type="button">
+			<button onClick={() => dummyCall(false)} type="button">
 				Dummy Call Without CSRF Header
-			</button> */}
+			</button>
 		</div>
 	)
 }
