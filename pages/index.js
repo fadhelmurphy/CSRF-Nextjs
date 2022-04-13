@@ -1,11 +1,15 @@
 import Head from 'next/head'
 import Image from 'next/image'
 import styles from '../styles/Home.module.css'
-import csrf from '../src/csrf'
 import axios from 'axios'
+
+// var CryptoJS = require("crypto-js");
 
 export default function Home({ csrfToken }) {
 	const dummyCall = (withHeader = true) => {
+		// if(!withHeader){
+		// 	document.cookie = "auth-token=Chuck"
+		// }
 		axios({
 			method: 'post',
 			url: '/api/hello',
