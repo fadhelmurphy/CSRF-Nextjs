@@ -4,7 +4,7 @@ var CryptoJS = require("crypto-js");
 export async function middleware(req) {
 	const authToken = req.cookies["auth-token"]
 	
-	const bytes  = CryptoJS.AES.decrypt(authToken, `${process.env.API_KEY}`);
+	const bytes  = CryptoJS.AES.decrypt(authToken, `sekut`);
 	const originalText = bytes.toString(CryptoJS.enc.Utf8);
 
 	if(originalText.length === 0){

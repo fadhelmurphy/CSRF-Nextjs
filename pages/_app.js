@@ -11,7 +11,7 @@ MyApp.getInitialProps = async (props) => {
   const {ctx} = props
   //Check if I am in the server.
   if (ctx.req) {
-      var ciphertext = CryptoJS.AES.encrypt(makeid(5), `${process.env.API_KEY}`).toString();
+      var ciphertext = CryptoJS.AES.encrypt(makeid(5), `sekut`).toString();
       // ctx.res.setHeader('Set-Cookie', `auth-token=${ciphertext}; Secure; SameSite=Strict`);
        
   }
