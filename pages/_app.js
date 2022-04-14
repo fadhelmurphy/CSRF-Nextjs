@@ -11,14 +11,16 @@ MyApp.getInitialProps = async (props) => {
   const {ctx} = props
   //Check if I am in the server.
   if (ctx.req) {
-      var ciphertext = CryptoJS.AES.encrypt(makeid(5), `sekut`).toString();
+      var cipher = makeid(5);
+      var ciphertext = CryptoJS.AES.encrypt(cipher, cipher).toString();
+      // ctx.res.setHeader('Set-Cookie', [`auth-token=${ciphertext};`,`cipher=${cipher};`]);
       // ctx.res.setHeader('Set-Cookie', `auth-token=${ciphertext}; Secure; SameSite=Strict`);
        
   }
   const appProps = await App.getInitialProps(props);
 
   //Return pageProps to the page with the authenticted user information.
-  return { ...appProps,pageProps: { ...appProps.pageProps, ciphertext } }
+  return { ...appProps,pageProps: { ...appProps.pageProps, ciphertext, cipher } }
   // return { pageProps: { csrfToken: ciphertext } };
 
 };

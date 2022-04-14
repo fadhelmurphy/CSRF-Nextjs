@@ -42,8 +42,8 @@ export default function Home({ciphertext,cipher}) {
 			<button onClick={() => dummyCall(false)} type="button">
 				Dummy Call Without CSRF Header
 			</button>
-			<Link href="/two">
-          <a>Two</a>
+			<Link href="/">
+          <a>Home</a>
         </Link>
 		</div>
 	)
